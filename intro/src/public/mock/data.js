@@ -18,7 +18,6 @@ const COLORS = [
 
 let lastIndex = 0;
 
-
 function getProductName() {
   const product = PRODUCTS[random(0, PRODUCTS.length - 1)]
   const color = COLORS[random(0, COLORS.length - 1)]

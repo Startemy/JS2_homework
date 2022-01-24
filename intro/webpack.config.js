@@ -5,10 +5,10 @@ const MiniCss = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: 'development',
-    /**Точка входа(основной файл) */
     entry: {
         main: path.resolve(__dirname, './src/index.js'),
     },
+
     module: {
         rules:[
             {
@@ -26,7 +26,6 @@ module.exports = {
         ]
     },
 
-    /**Куда будет помещен исходный файл */
     output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].bundle.js',
