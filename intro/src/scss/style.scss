@@ -1,0 +1,39 @@
+$body-color: rgb(89, 0, 0);
+
+
+body {
+    color: $body-color;
+}
+
+.container{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.showcase{
+display: grid;
+justify-content: flex-end;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 10px;
+    & > [class^="goods-item"]{
+        border: 1px solid grey;
+        border-radius: 5px;
+        width: 100%;
+        height: 300px;
+        box-shadow: 4px 4px 3px 0px rgba(34, 60, 80, 0.2);
+        & .picture{
+            text-align: center;
+            padding: 10px 5px 5px 5px;
+        }
+        & > h3{
+            color:rgb(0, 189, 101);
+            padding: 0px 10px 0px 10px;
+        }
+        & > p{
+            text-align: right;
+            color: red;
+            padding: 0px 10px 0px 10px;
+        }
+    }
+}

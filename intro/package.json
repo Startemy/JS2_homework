@@ -1,0 +1,27 @@
+{
+  "name": "intro",
+  "version": "1.0.0",
+  "description": "js2_homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "startemy/alayev7@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^2.5.2",
+    "svg-inline-loader": "^0.8.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "devDependencies": {
+    "sass": "^1.49.0",
+    "sass-loader": "^12.4.0",
+    "webpack": "^5.67.0"
+  }
+}
