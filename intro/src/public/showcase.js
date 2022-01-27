@@ -1,5 +1,3 @@
-
-
 const $showcase = document.querySelector('.showcase');
 
 const renderGoodsItem = ({ title, price, picture }) => {

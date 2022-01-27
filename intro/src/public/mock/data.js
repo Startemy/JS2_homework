@@ -30,7 +30,7 @@ function getProduct() {
     id: ++lastIndex,
     title: getProductName(),
     price: random(99, 999),
-    picture: random(1, 250)
+    picture: random(1, 200)
   }
 }
 

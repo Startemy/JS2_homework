@@ -4,40 +4,50 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCss = require("mini-css-extract-plugin");
 
 module.exports = {
-    mode: 'development',
-    entry: {
-        main: path.resolve(__dirname, './src/index.js'),
-    },
+   mode: 'development',
+   entry: {
+      main: path.resolve(__dirname, './src/index.js'),
+   },
+   devServer: {
+      static: path.resolve(__dirname, './dist'),
+   },
 
-    module: {
-        rules:[
-            {
-                test: /\.svg$/,
-                use: 'svg-inline-loader'
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    MiniCss.loader,
-                    "css-loader",
-                    "sass-loader"
-                ]
-            },
-        ]
-    },
+   experiments: {
+      topLevelAwait: true,
+   },
 
-    output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js',
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'GeekBrains Shop JS2',
-            template: path.resolve(__dirname, './src/public/template.html'), // шаблон
-            filename: 'index.html', // название выходного файла
-        }),
-        new MiniCss({
-            filename: "style.css",
-        })
-    ],
+   module: {
+      rules:[
+         {
+               test: /\.svg$/,
+               use: 'svg-inline-loader'
+         },
+
+         {
+               test: /\.s[ac]ss$/i,
+               use: [
+                  MiniCss.loader,
+                  "css-loader",
+                  "sass-loader"
+               ]
+         },
+      ]
+   },
+
+   output: {
+   path: path.resolve(__dirname, './dist'),
+   filename: '[name].bundle.js',
+   },
+
+   plugins: [
+      new HtmlWebpackPlugin({
+         title: 'GeekBrains Shop JS2',
+         template: path.resolve(__dirname, './src/public/template.html'), // шаблон
+         filename: 'index.html', // название выходного файла
+      }),
+
+      new MiniCss({
+         filename: "style.css",
+      })
+   ],
 }
