@@ -10,10 +10,10 @@ import { send } from './utils.js'
 
 const API_URL = 'http://localhost:3000/api/v1'
 
-
+1
 let productList = [];
 let cart = [];
-let id = 5;
+let idD = {id: 5};
 
 //Получаем массив с товарами из catalog.json
 send((error) => { console.log(err) }, (res) => {
@@ -24,35 +24,25 @@ send((error) => { console.log(err) }, (res) => {
 }, `${API_URL}/catalog`)
 
 // Пользователь добавляет товар в корзину
-let buyed = {id: 8, title: "new", price: 999}
+// let buyed = {id: 8, title: "new", price: 999}
+// send((error) => { console.log(err) }, (res) => {
+//    cart.push(buyed)
+// }, `${API_URL}/cart`, 'POST', JSON.stringify(buyed), {"Content-Type": "application/json"})
+
+
+// Пользователь добавляет товар в корзину
 send((error) => { console.log(err) }, (res) => {
-   cart.push(buyed)
-}, `${API_URL}/cart`, 'POST', JSON.stringify(buyed), {"Content-Type": "application/json"})
+   console.log('Все ок')
+}, `${API_URL}/cart`, 'DELETE', JSON.stringify(idD), {"Content-Type": "application/json"})
 
 
 //Удаление товара из корзины Fetch
-function delFromCart(url){
-   return fetch(`${API_URL}${url}`, {
-      method: 'DELETE',
-      headers: {
-         'Content-Type': 'application/json;charset=utf-8'
-      },
-   })
-}
-delFromCart(`/cart/${id}`);
-
-
-// //Удаление товара из корзины *****
-// delFromCartSec(`/cart`)
-
-// function delFromCartSec(url){
-//    fetch(`${API_URL}${url}`, {
-//       method: 'delete',
+// function delFromCart(url){
+//    return fetch(`${API_URL}${url}`, {
+//       method: 'DELETE',
 //       headers: {
 //          'Content-Type': 'application/json;charset=utf-8'
 //       },
-//       body: id
 //    })
-//    .then(res => res.json())
-//    //.then(res => console.log(res));
 // }
+// delFromCart(`/cart/${id}`)

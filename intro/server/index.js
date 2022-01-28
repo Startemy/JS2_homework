@@ -52,6 +52,24 @@ app.post('/api/v1/cart', (req, res) => {
    })
 })
 
+// Удалить товар из корзины
+app.delete('/api/v1/cart', (req, res) => {
+   fs.readFile(cart_path, 'utf-8', (err, data) => {
+      if(!err) {
+         const delfromcart = JSON.parse(data);
+         const findeId = delfromcart.findIndex(function(item){
+            return +item.id == +req.body.id;
+         });
+            delfromcart.splice(findeId, 1);
+            fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
+               res.sendStatus(201)
+            })
+      } else {
+         res.status(500).send(err)
+      }
+   })
+});
+
 // Удаляем из корзмны по ID
 app.delete('/api/v1/cart/:id', (req, res) => {
    fs.readFile(cart_path, 'utf-8', (err, data) => {
@@ -70,46 +88,24 @@ app.delete('/api/v1/cart/:id', (req, res) => {
    })
 });
 
-
-// // Удаляем из корзмны *****
-// app.delete('/api/v1/cart/', (req, res) => {
-//    fs.readFile(cart_path, 'utf-8', (err, data) => {
-//       if(!err) {
-//          const delfromcart = JSON.parse(data);
-
-//          const findeId = delfromcart.findIndex(function(item){
-//             return +item.id === +req.body.id;
-//          });
-//             delfromcart.splice(findeId, 1);
-
-//             fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
-//                res.sendStatus(201)
-//             })
-//       } else {
-//          res.status(500).send(err)
-//       }
-//    })
-// });
-
-
 //Получение одного товара по id
-// app.get('/api/v1/catalog/:id', (req, res) => {
-//    fs.readFile(catalog_path, 'utf-8', (err, data) => {
-//    if(!err) {
-//       const catalog = JSON.parse(data);
-//       const product = catalog.find((item) => item.id == req.params.id)
+app.get('/api/v1/catalog/:id', (req, res) => {
+   fs.readFile(catalog_path, 'utf-8', (err, data) => {
+   if(!err) {
+      const catalog = JSON.parse(data);
+      const product = catalog.find((item) => item.id == req.params.id)
 
-//       if(!product) {
-//          res.status(404).send('Not Found');
-//          return;
-//       }
+      if(!product) {
+         res.status(404).send('Not Found');
+         return;
+      }
 
-//       res.send(JSON.stringify(product));
-//    } else {
-//       res.status(500).send(err)
-//    }
-//    })
-// })
+      res.send(JSON.stringify(product));
+   } else {
+      res.status(500).send(err)
+   }
+   })
+})
 
 
 app.listen(port, () => {
