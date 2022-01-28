@@ -60,7 +60,11 @@ app.delete('/api/v1/cart', (req, res) => {
          const findeId = delfromcart.findIndex(function(item){
             return +item.id == +req.body.id;
          });
-            delfromcart.splice(findeId, 1);
+         if(findeId >= 0)
+            {delfromcart.splice(findeId, 1)
+         }else{
+            return delfromcart;
+         }
             fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
                res.sendStatus(201)
             })
@@ -78,7 +82,11 @@ app.delete('/api/v1/cart/:id', (req, res) => {
          const findeId = delfromcart.findIndex(function(item){
             return +item.id === +req.params.id;
          });
-            delfromcart.splice(findeId, 1);
+         if(findeId >= 0)
+            {delfromcart.splice(findeId, 1)
+         }else{
+            return delfromcart;
+         }
             fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
                res.sendStatus(201)
             })

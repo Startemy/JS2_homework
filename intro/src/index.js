@@ -30,13 +30,13 @@ send((error) => { console.log(err) }, (res) => {
 // }, `${API_URL}/cart`, 'POST', JSON.stringify(buyed), {"Content-Type": "application/json"})
 
 
-// Пользователь добавляет товар в корзину
+// Удалить товар из корзины
 send((error) => { console.log(err) }, (res) => {
    console.log('Все ок')
 }, `${API_URL}/cart`, 'DELETE', JSON.stringify(idD), {"Content-Type": "application/json"})
 
 
-//Удаление товара из корзины Fetch
+//Удаление товара из корзины Fetch по id
 // function delFromCart(url){
 //    return fetch(`${API_URL}${url}`, {
 //       method: 'DELETE',
