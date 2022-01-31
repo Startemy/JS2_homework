@@ -1,9 +1,6 @@
-
 const path = require('path')
 const fs = require('fs')
-
 const express = require('express');
-const { findIndex } = require('lodash');
 const app = express()
 
 const port = 3000;
@@ -42,7 +39,8 @@ app.post('/api/v1/cart', (req, res) => {
    fs.readFile(cart_path, 'utf-8', (err, data) => {
       if(!err) {
          const cart = JSON.parse(data);
-         cart.push(req.body);
+         // Сделать проверку натналичие
+         cart.push(req.body)
          fs.writeFile(cart_path, JSON.stringify(cart), 'utf-8', (err, data) => {
             res.sendStatus(201)
          })
@@ -57,17 +55,16 @@ app.delete('/api/v1/cart', (req, res) => {
    fs.readFile(cart_path, 'utf-8', (err, data) => {
       if(!err) {
          const delfromcart = JSON.parse(data);
-         const findeId = delfromcart.findIndex(function(item){
-            return +item.id == +req.body.id;
-         });
-         if(findeId >= 0)
-            {delfromcart.splice(findeId, 1)
-         }else{
-            return delfromcart;
-         }
+         const findeId = delfromcart.findIndex((item) => +item.id == +req.body.id);
+         if(findeId >= 0){
+            delfromcart.splice(findeId, 1)
             fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
-               res.sendStatus(201)
+            res.sendStatus(201)
             })
+         }else{
+            res.status(404).send('Продукт не найден')
+            return;
+         }
       } else {
          res.status(500).send(err)
       }
@@ -79,17 +76,15 @@ app.delete('/api/v1/cart/:id', (req, res) => {
    fs.readFile(cart_path, 'utf-8', (err, data) => {
       if(!err) {
          const delfromcart = JSON.parse(data);
-         const findeId = delfromcart.findIndex(function(item){
-            return +item.id === +req.params.id;
-         });
-         if(findeId >= 0)
-            {delfromcart.splice(findeId, 1)
-         }else{
-            return delfromcart;
+         const findeId = delfromcart.findIndex((item) => +item.id == +req.params.id);
+         if(findeId < 0){
+            res.status(404).send('Продукт не найден')
+            return;
          }
-            fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
-               res.sendStatus(201)
-            })
+         delfromcart.splice(findeId, 1);
+         fs.writeFile(cart_path, JSON.stringify(delfromcart), 'utf-8', (err, data) => {
+         res.sendStatus(201)
+         })
       } else {
          res.status(500).send(err)
       }

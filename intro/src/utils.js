@@ -32,3 +32,10 @@ export function send(onError, onSuccess, url, method = 'GET', data = '', headers
 
    xhr.send(data);
 }
+
+
+export function sendPromise(url, method = 'GET', data = '', headers = {}, timeout = 60000) {
+   return new Promise((resolve, reject) => {
+      send(reject, resolve, url, method, data, headers, timeout)
+   })
+}

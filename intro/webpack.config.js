@@ -1,13 +1,19 @@
 /**Указывает правильные пути */
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCss = require("mini-css-extract-plugin");
+const MiniCss = require('mini-css-extract-plugin');
 
 module.exports = {
    mode: 'development',
    entry: {
       main: path.resolve(__dirname, './src/index.js'),
    },
+
+   output: {
+      path: path.resolve(__dirname, './dist'),
+      filename: '[name].bundle.js',
+      },
+
    devServer: {
       static: path.resolve(__dirname, './dist'),
    },
@@ -19,24 +25,19 @@ module.exports = {
    module: {
       rules:[
          {
-               test: /\.svg$/,
-               use: 'svg-inline-loader'
+         test: /\.svg$/,
+         use: 'svg-inline-loader'
          },
 
          {
-               test: /\.s[ac]ss$/i,
-               use: [
-                  MiniCss.loader,
-                  "css-loader",
-                  "sass-loader"
-               ]
+         test: /\.s[ac]ss$/i,
+         use: [
+            MiniCss.loader,
+            'css-loader',
+            'sass-loader'
+         ]
          },
       ]
-   },
-
-   output: {
-   path: path.resolve(__dirname, './dist'),
-   filename: '[name].bundle.js',
    },
 
    plugins: [
@@ -47,7 +48,8 @@ module.exports = {
       }),
 
       new MiniCss({
-         filename: "style.css",
+         filename: 'style.css',
+         chunkFilename: '[id].css',
       })
    ],
 }
