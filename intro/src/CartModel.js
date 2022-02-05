@@ -19,32 +19,11 @@ export default class CartModel extends ProductList {
          })
    }
 
-   add(product) {
-      this.api.addToCart(product)
-
-      // Под вопросом куда ее вставлять.
-      //this.list.push(product)
+   add(data) {
+      this.api.addToCart(data)
    }
 
-   // add(product, onError) {
-   //    this.api.addToCart(
-   //       () => {
-   //       this.list.push(product)
-   //       },
-   //       onError,
-   //       product
-   //    )
-   // }
-
-   remove(id, onError) {
-      if(this.find(id)) {
-         this.api.removeFromCart(
-         () => {
-            this.remove(id)
-         },
-         onError,
-         this.list[index]
-         )
-      }
+   remove(id) {
+      this.api.removeFromCart(id)
    }
 }

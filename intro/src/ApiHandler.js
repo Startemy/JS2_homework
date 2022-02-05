@@ -26,10 +26,13 @@ export default class ApiHandler {
          headers: {'Content-Type': 'application/json'},
          body: JSON.stringify(data)
       })
-      .then(res => console.log(res.ok))
    }
 
-   removeFromCart(onSuccess, onError, data) {
-      send(onError, onSuccess, `${this.apiUrl}/cart`, 'DELETE', JSON.stringify(data), {'Content-Type': 'application/json'})
+   removeFromCart(data) {
+      fetch(`${this.apiUrl}/cart`, {
+         method: 'DELETE',
+         headers: {'Content-Type': 'application/json'},
+         body: JSON.stringify(data)
+      })
    }
 }

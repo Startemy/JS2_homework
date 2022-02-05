@@ -9,7 +9,7 @@ export default class ProductList {
 
    find(id) {
       const index = this.list.findIndex((item) => item.id == id);
-      if(index >=0) {
+      if(index >= 0) {
          return this.list[index];
       }
       return false;
