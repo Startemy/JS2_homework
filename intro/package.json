@@ -6,12 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "watch": "webpack --watch",
+    "serv3000": "webpack && node ./server/index.js"
   },
   "author": "startemy/alayev7@gmail.com",
   "license": "ISC",
   "dependencies": {
     "css-loader": "^6.5.1",
+    "express": "^4.17.2",
     "html-webpack-plugin": "^5.5.0",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.5.2",
